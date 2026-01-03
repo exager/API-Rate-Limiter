@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: rate-limited-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - rate_limit_data:/app/state
+    environment:
+      STATE_BACKEND: file
+      STATE_FILE_PATH: /app/state/rate_limits.json
+      REQUESTS_PER_WINDOW: 3
+      WINDOW_SECONDS: 200
+      ALLOWED_API_KEYS: testkey
+      LOG_LEVEL: INFO
+
+volumes:
+  rate_limit_data:
