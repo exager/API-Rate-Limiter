@@ -1,3 +1,4 @@
 __pycache__
 .virtual/
 .pytest_cache/
+.DS_Store
